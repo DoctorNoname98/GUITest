@@ -2,7 +2,7 @@ var gl = null;
 var cone = null;
 
 function init() {
-    cone = new Cone(4);
+    cone = new Cone(4, "Cone-vertex-shader", "Cone-fragment-shader");
     var canvas = document.getElementById( "webgl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
