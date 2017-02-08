@@ -20,7 +20,7 @@ function init() {
 
 function render() {
     cone.render();
-    gl.clear( gl.COLOR_BUFFER_BIT );
+    gl.clear( gl.POINTS );
 }
 
 window.onload = init;
