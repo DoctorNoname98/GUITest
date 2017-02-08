@@ -15,10 +15,11 @@ function init() {
     gl.clearColor( 1.0, 1.0, 0.0, 1.0 );
     cone = new Cone(4, "Cone-vertex-shader", "Cone-fragment-shader");
 
-    cone.render();
+    render();
 }
 
 function render() {
+    cone.render();
     gl.clear( gl.COLOR_BUFFER_BIT );
 }
 
