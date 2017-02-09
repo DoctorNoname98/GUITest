@@ -11,11 +11,10 @@
           type="x-shader/x-vertex">
           
     attribute vec4 vPosition;
-    attribute int pSize = 10;
     void main() 
     {
          gl_Position = vPosition;
-         gl_PointSize = pSize;
+         gl_PointSize = 10;
     }
   </script>
   <script id="Cone-fragment-shader"
