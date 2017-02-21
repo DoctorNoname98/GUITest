@@ -19,8 +19,8 @@ function init() {
 }
 
 function render() {
+    gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
     cone.render();
-    gl.clear( gl.POINTS );
 }
 
 window.onload = init;
