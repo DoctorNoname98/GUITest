@@ -5,12 +5,13 @@ function init()
   canvas = document.getElementById("webgl-canvas");
   gl = WebGLUtils.setupWebGL(canvas);
 
-  Visualizer();
+  //Visualizer();
+  render();
 }
 
-function Visualizer()
+/*function Visualizer()
 {
-  file = new File("C:\Users\drnon_000\desktop", DarudeAstleySandroll.mp3);
+  //file = new File("C:\Users\drnon_000\desktop", DarudeAstleySandroll.mp3);
   audioInputStream = AudioSystem.getAudioInputStream(file);
 
   frameLength = (int) (audioInputStream.getFrameLength());
@@ -41,11 +42,18 @@ function Visualizer()
       toReturn[channel][samepleIndex] = sample;
     }
     sampleIndex++;
-  }
+    render();
+  }*/
+
 
   /*private int getSixteenBitSample(int high, int low)
   {
     return (high << 8) + (low & 0x00ff);
   }*/
+//}
+function render() {
+    gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
+    square = new Square();
+    square.render();
 }
 window.onload = init;
