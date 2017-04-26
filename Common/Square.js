@@ -3,8 +3,8 @@ function Square( vertexShaderId, fragmentShaderId ) {
     // Initialize the shader pipeline for this object using either shader ids
     //   declared in the application's HTML header, or use the default names.
     //
-    var vertShdr = vertexShaderId || "Cube-vertex-shader";
-    var fragShdr = fragmentShaderId || "Cube-fragment-shader";
+    var vertShdr = vertexShaderId || "Square-vertex-shader";
+    var fragShdr = fragmentShaderId || "Square-fragment-shader";
 
     this.program = initShaders(gl, vertShdr, fragShdr);
 
@@ -18,9 +18,9 @@ function Square( vertexShaderId, fragmentShaderId ) {
     this.positions = {
         values : new Float32Array([
           (0.5, 1),
-          (0.5, -1),
+          (0.5, 0),
           (-0.5, 1),
-          (-0.5, -1)
+          (-0.5, 0)
         ]),
         numComponents : 2
     };
