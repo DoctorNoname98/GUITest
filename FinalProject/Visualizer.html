@@ -9,9 +9,9 @@
   <script src="../Common/MV.js"></script>
   <script src="../Common/MatrixStack.js"></script>
   <script src="../Common/Sphere.js"></script>
+  <script src="three.js"></script>
   <script src="Visualizer.js"></script>
   <script src="Bars.js"></script>
-  <audio src="DarudeAstleySandroll.mp3"></audio>
 
 
 
@@ -36,11 +36,23 @@
 </head>
 
 <body>
-  <canvas id="webgl-canvas" width="800" height="800"></canvas>
+  <div id = "wrapper">
+    <div id = "fileWrapper" class = "file_wrapper">
+      <div id = "info">
+        Javascript Audio Visualizer
+      </div>
+      <script>
 
-  <audio controls>
-    <source src="C:\Users\drnon_000\desktop\DarudeAstleySandroll.mp3" type="audio/mpeg">
-  </audio>
+        renderer.setSize(800 , 800);
+        document.body.appendChild(renderer.domElement);
+      </script>
+      <label for = "uploadedFile"> Drag & drop or select a file to play:</label>
+      <input type = "file" id = "uploadedFile"></input>
+    </div>
+    <div id = "visualizer_wrapper">
 
+      <canvas id="webgl-canvas" width="0" height="0"></canvas>
+    </div>
+  </div>
 </body>
 </html>
