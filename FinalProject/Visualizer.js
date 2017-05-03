@@ -64,7 +64,7 @@ function render(meterNum, array, angle) {
 
     sphere.applyMatrix( new THREE.Matrix4().makeRotationZ(angle - time) );
     var radianAngle = (angle * i - time) * Math.PI / 180;
-    sphere.applyMatrix( new THREE.Matrix4().makeTranslation(-Math.sin(radianAngle) * array[i] / 10, Math.cos(radianAngle) * array[i] / 10, 0 );
+    sphere.applyMatrix( new THREE.Matrix4().makeTranslation(-Math.sin(radianAngle) * array[i] / 10, Math.cos(radianAngle) * array[i] / 10, 0 ));
     if(array[i] > 0)
     {
       sphere.scale.x = (array[i] / scaler);
