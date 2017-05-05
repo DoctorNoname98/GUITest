@@ -32,11 +32,7 @@ function init()
 }
 
 
-function render(meterNum, array, angle) {
 
-
-
-}
 
 
 
@@ -218,11 +214,7 @@ Visualizer.prototype =
         capStyle = '#fff',
         meterNum = 32, //count of the meters
         capYPositionArray = []; //store the vertical position of the caps for the previous frame
-        ctx = canvas.getContext('2d');//,
-        //gradient = ctx.createLinearGradient(0, 0, 0, 300);
-    //gradient.addColorStop(1, '#0f0');
-    //gradient.addColorStop(0.5, '#ff0');
-    //gradient.addColorStop(0, '#f00');
+        ctx = canvas.getContext('2d');
     var drawMeter = function()
     {
 
