@@ -27,22 +27,8 @@ function init()
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.enable(gl.DEPTH_TEST);
-  /*
-  bars = [1,2,3,4,5,6,7,8,9];
-  for (var number in Bars)
-  {
-    var bar = Bars[number] = new Sphere();
-    bar.uniforms = {
-      color : gl.getUniformLocation(bar.program, "color"),
-      MV : gl.getUniformLocation(bar.program, "MV"),
-      P : gl.getUniformLocation(bar.program, "P"),
-    };
-  }
-  */
-  resize();
 
   new Visualizer().ini();
-  //window.requestAnimationFrame(render);
 }
 
 
@@ -62,14 +48,17 @@ function render(meterNum, array, angle) {
     sphere.updateMatrix();
     //sphere.translate.x = (i * 10));
 
-    sphere.applyMatrix( new THREE.Matrix4().makeRotationZ(angle - time) );
     var radianAngle = (angle * i - time) * Math.PI / 180;
-    sphere.applyMatrix( new THREE.Matrix4().makeTranslation(-Math.sin(radianAngle) * array[i] / 5, Math.cos(radianAngle) * array[i] / 5, 0 ));
+
+    sphere.applyMatrix( new THREE.Matrix4().makeRotationZ(radianAngle) );
+
+
     if(array[i] > 0)
     {
-      sphere.scale.x = (array[i] / scaler);
-      sphere.scale.y = (array[i] / scaler);
-      sphere.scale.z = (array[i] / scaler);
+      sphere.applyMatrix( new THREE.Matrix4().makeTranslation(-Math.sin(radianAngle) * array[i] / 5, Math.cos(radianAngle) * array[i] / 5, 0 ));
+      sphere.scale.x = (array[i] * 2/ scaler);
+      sphere.scale.y = (array[i] * 2/ scaler);
+      sphere.scale.z = (array[i] * 2/ scaler);
     } else
     {
       sphere.scale.x = (.01);
@@ -78,23 +67,12 @@ function render(meterNum, array, angle) {
     }
 
 
-
-    //ms.load(V);
-    //ms.push();
-    //ms.rotate(time + angle * i, [0,0,1]);
-    //ms.translate(array[i], 0, 0);
-    //gl.useProgram(bar.program);
-    //gl.uniformMatrix4fv(bar.uniforms.MV, false, flatten(ms.current()));
-    //gl.uniformMatrix4fv(bar.uniforms.P, false, flatten(P));
-    //gl.uniform4fv(bar.uniforms.color, flatten(data.color));
     scene.add(sphere);
     sphere.updateMatrix();
 
-    //ms.pop();
   }
 
 
-  //cube.position.y = 10;
   time += 1;
   requestAnimationFrame(render);
   renderer.render(scene, camera);
@@ -104,19 +82,6 @@ function render(meterNum, array, angle) {
 
 }
 
-function resize() {
-  /*
-  var w = canvas.clientWidth;
-  var h = canvas.clientHeight;
-
-  gl.viewport(0, 0, w, h);
-
-  var fovy = 100.0; // degrees
-  var aspect = w / h;
-
-  P = perspective(fovy, aspect, near, far);
-  */
-}
 
 
 
@@ -328,113 +293,14 @@ Visualizer.prototype =
         };
       };
 
-      var geometry = new THREE.SphereGeometry(30, 50, 50, 0, Math.PI * 2, 0, Math.PI * 2);
-      var material = new THREE.MeshBasicMaterial({color: 0xfffff, wireframe: true});
-      var sphere = new THREE.Mesh(geometry, material);
-
-      var ms = new MatrixStack();
-
       var angle = 360 / meterNum;
-      V = translate(0,0,0)
-
-/*
-      for (var i = 0; i < meterNum; i++)
-      {
-        var bar = array[i] = new THREE.Mesh(geometry,material);
 
 
-
-        bar.uniforms = {
-          //color : gl.getUniformLocation(bar.program, "color"),
-          MV : gl.getUniformLocation(bar.program, "MV"),
-          P : gl.getUniformLocation(bar.program, "P"),
-        };
-      }
-*/    /*
-      for (var i = 0; i < meterNum; i++)
-      {
-        var scaler = 1000;
-        //console.log("e");
-        var sphere = new THREE.Mesh(geometry, material);
-        //var rot = new THREE.Matrix4().makeRotationZ(angle * i);
-        var pos = new THREE.Matrix4().makeRotationZ(angle * i);
-        //pos.rotateAround((0,0,1), angle * i)
-        //sphere.applyMatrix( rot * pos);
-        sphere.matrixAutoUpdate = false;
-        sphere.rotation.y = (angle * i);
-        sphere.updateMatrix();
-        geometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, array[i] / scaler * 20, 0) );
-        if(array[i] > 0)
-        {
-          sphere.scale.x = (array[i] / scaler);
-          sphere.scale.y = (array[i] / scaler);
-          sphere.scale.z = (array[i] / scaler);
-        } else
-        {
-          sphere.scale.x = (.1);
-          sphere.scale.y = (.1);
-          sphere.scale.z = (.1);
-        }
-
-
-        //ms.load(V);
-        //ms.push();
-        //ms.rotate(time + angle * i, [0,0,1]);
-        //ms.translate(array[i], 0, 0);
-        //gl.useProgram(bar.program);
-        //gl.uniformMatrix4fv(bar.uniforms.MV, false, flatten(ms.current()));
-        //gl.uniformMatrix4fv(bar.uniforms.P, false, flatten(P));
-        //gl.uniform4fv(bar.uniforms.color, flatten(data.color));
-        scene.add(sphere);
-        sphere.updateMatrix();
-
-        //ms.pop();
-      }
-
-
-      //cube.position.y = 10;
-      time += .01;
-      requestAnimationFrame(render);
-      renderer.render(scene, camera);
-      while(scene.children.length > 0){
-        scene.remove(scene.children[0]);
-      }
-      */
       render(meterNum, array, angle);
 
 
 
-  /*
-      var step = Math.round(array.length / meterNum); //sample limited data from the total array
-      if(ctx)
-      {
-        ctx.clearRect(0, 0, cwidth, cheight);//clear canvas
 
-        for (var i = 0; i < meterNum; i++)
-        {
-          var value = array[i * step];
-          if (capYPositionArray.length < Math.round(meterNum))
-          {
-            capYPositionArray.push(value);
-          };
-
-          ctx.fillStyle = capStyle;
-
-          //draw the cap, the the transition effect
-          if (value < capYPositionArray[i])
-          {
-            ctx.fillRect(i * (meterWidth + gap), cheight - (--capYPositionArray[i]), meterWidth, capHeight);
-          } else
-          {
-            ctx.fillRect(i * (meterWidth + gap), cheight - value, meterWidth, capHeight);
-            capYPositionArray[i] = value;
-          };
-          ctx.fillStyle = "#123456";//gradient; //set the fillStyle to gradient for a better Look
-          ctx.fillRect(i * (meterWidth + gap) , cheight - value + capHeight, meterWidth, cheight); //the meter
-
-        }
-      }
-*/
 
 
 
