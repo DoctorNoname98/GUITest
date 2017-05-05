@@ -198,16 +198,14 @@ Visualizer.prototype =
 
 
     var that = this,
-        canvas = document.getElementById('webgl-canvas'),
-        cwidth = canvas.width,
-        cheight = canvas.height - 2,
+        
         meterWidth = 10, // width of meters in the spectrum
         gap = 2, //gap between meters
         capHeight = 2,
         capStyle = '#fff',
         meterNum = 32, //count of the meters
         capYPositionArray = []; //store the vertical position of the caps for the previous frame
-        ctx = canvas.getContext('2d');
+
     var drawMeter = function()
     {
 

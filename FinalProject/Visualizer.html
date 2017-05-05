@@ -14,24 +14,7 @@
 
 
 
-  <script type="x-shader/x-vertex" id="Sphere-vertex-shader">
-  attribute vec4  vPosition;
-  uniform mat4  MV;
-  uniform mat4  P;
-  void main()
-  {
-    gl_Position = P * MV * vPosition;
-  }
-  </script>
 
-  <script type="x-shader/x-fragment" id="Sphere-fragment-shader">
-  precision highp float;
-  uniform vec4  color;
-  void main()
-  {
-    gl_FragColor = color;
-  }
-  </script>
 </head>
 
 <body>
