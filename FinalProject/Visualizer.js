@@ -32,17 +32,7 @@ function init()
 }
 
 
-function render(meterNum, array, angle) {
 
-
-
-}
-
-
-
-
-
-//window.onload = init;
 
 
 
@@ -63,7 +53,6 @@ var Visualizer = function()
   this.status = 0;//1 for music playing, 0 forstopped
   this.forceStop = false;
   this.allCapsReachBottem = false;
-  //this.info = document.getElementById('info').innerHTML;
 }
 
 Visualizer.prototype =
@@ -288,7 +277,6 @@ Visualizer.prototype =
 
 
       time += 1;
-      requestAnimationFrame(render);
       renderer.render(scene, camera);
       while(scene.children.length > 0){
         scene.remove(scene.children[0]);
