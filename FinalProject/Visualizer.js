@@ -34,51 +34,7 @@ function init()
 
 function render(meterNum, array, angle) {
 
-  for (var i = 0; i < meterNum; i++)
-  {
-    var geometry = new THREE.SphereGeometry(10, 10, 10, 0, Math.PI * 2, 0, Math.PI * 2);
-    var material = new THREE.MeshBasicMaterial({color: 0xfffff, wireframe: true});
-    var scaler = 1000;
-    //console.log("e");
-    var sphere = new THREE.Mesh(geometry, material);
-    //pos.rotateAround((0,0,1), angle * i)
-    //sphere.applyMatrix( rot * pos);
-    sphere.matrixAutoUpdate = false;
-    //sphere.rotation.y = (/*time + */angle * i);
-    sphere.updateMatrix();
-    //sphere.translate.x = (i * 10));
 
-    var radianAngle = (angle * i - time) * Math.PI / 180;
-
-    sphere.applyMatrix( new THREE.Matrix4().makeRotationZ(radianAngle) );
-
-
-    if(array[i] > 0)
-    {
-      sphere.applyMatrix( new THREE.Matrix4().makeTranslation(-Math.sin(radianAngle) * array[i] / 5, Math.cos(radianAngle) * array[i] / 5, 0 ));
-      sphere.scale.x = (array[i] * 2/ scaler);
-      sphere.scale.y = (array[i] * 2/ scaler);
-      sphere.scale.z = (array[i] * 2/ scaler);
-    } else
-    {
-      sphere.scale.x = (.01);
-      sphere.scale.y = (.01);
-      sphere.scale.z = (.01);
-    }
-
-
-    scene.add(sphere);
-    sphere.updateMatrix();
-
-  }
-
-
-  time += 1;
-  requestAnimationFrame(render);
-  renderer.render(scene, camera);
-  while(scene.children.length > 0){
-    scene.remove(scene.children[0]);
-  }
 
 }
 
@@ -296,7 +252,51 @@ Visualizer.prototype =
       var angle = 360 / meterNum;
 
 
-      render(meterNum, array, angle);
+      for (var i = 0; i < meterNum; i++)
+      {
+        var geometry = new THREE.SphereGeometry(10, 10, 10, 0, Math.PI * 2, 0, Math.PI * 2);
+        var material = new THREE.MeshBasicMaterial({color: 0xfffff, wireframe: true});
+        var scaler = 1000;
+        //console.log("e");
+        var sphere = new THREE.Mesh(geometry, material);
+        //pos.rotateAround((0,0,1), angle * i)
+        //sphere.applyMatrix( rot * pos);
+        sphere.matrixAutoUpdate = false;
+        //sphere.rotation.y = (/*time + */angle * i);
+        sphere.updateMatrix();
+        //sphere.translate.x = (i * 10));
+
+        var radianAngle = (angle * i - time) * Math.PI / 180;
+
+        sphere.applyMatrix( new THREE.Matrix4().makeRotationZ(radianAngle) );
+
+
+        if(array[i] > .01)
+        {
+          sphere.applyMatrix( new THREE.Matrix4().makeTranslation(-Math.sin(radianAngle) * array[i] / 5, Math.cos(radianAngle) * array[i] / 5, 0 ));
+          sphere.scale.x = (array[i] * 1.9/ scaler);
+          sphere.scale.y = (array[i] * 1.9/ scaler);
+          sphere.scale.z = (array[i] * 1.9/ scaler);
+        } else
+        {
+          sphere.scale.x = (.01);
+          sphere.scale.y = (.01);
+          sphere.scale.z = (.01);
+        }
+
+
+        scene.add(sphere);
+        sphere.updateMatrix();
+
+      }
+
+
+      time += 1;
+      requestAnimationFrame(render);
+      renderer.render(scene, camera);
+      while(scene.children.length > 0){
+        scene.remove(scene.children[0]);
+      }
 
 
 
