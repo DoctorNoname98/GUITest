@@ -32,7 +32,11 @@ function init()
 }
 
 
+function render(meterNum, array, angle) {
 
+
+
+}
 
 
 
@@ -225,7 +229,7 @@ Visualizer.prototype =
       if (that.status === 0)
       {
         //fix when some sounds end the value still not back to zero
-        for (var i = arr.length - 1; i >= 0; i--)
+        for (var i = array.length - 1; i >= 0; i--)
         {
           array[i] = 0;
         };
