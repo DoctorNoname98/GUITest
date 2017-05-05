@@ -1,8 +1,8 @@
 Audio visualizer built using three.js
 
-current issues: There is an error that I think might be causing slow down spikes.
-                Sphere's need to be fixed, translation ramps up with each sphere.
-                Currently does not run in Opera browser.
+current issues: There is an error that I think might be causing slow down spikes
+                  -The error is not causing the spikes, and when I fixed it the program slowed to a halt in a matter of seconds, so for now very unfortunately I am leaving it in...
+                
 
 With this audio visualizer you can upload an audio file (for now I know mp3, mp4, and wav work), it will interpret the audio, 
   create spheres, play the audio, and simultaiously modify the transformation of the spheres in tune to the audio.
